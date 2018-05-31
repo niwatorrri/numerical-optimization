@@ -68,13 +68,20 @@ def Newton(fun, x0, method='damped', search='inexact',
             errflag = 1
 
         d = np.linalg.solve(G, -g1)
+
         if method == 'normal':
             alpha, v = 1, 0
-        if method == 'damped':
+
+        elif method == 'damped':
             if search == 'inexact':
                 alpha, v = ls.inexact(fun, x, d, fx=f1, gx=g1, **kwargs)
             elif search == 'exact':
                 alpha, v = ls.exact(fun, x, d, **kwargs)
+            else:
+                raise ValueError('Invalid search type')
+        else:
+            raise ValueError('Invalid method name')
+
         x = x + alpha * d
 
         f0 = f1
@@ -154,14 +161,18 @@ def modifiedNewton(fun, x0, method='mix', search='inexact',
                         v = norm(G) / 2 # Frobenius norm
                     else:
                         v *= 2
-
             y = np.linalg.solve(L, -g1)
             d = np.linalg.solve(L.T, y)
+        else:
+            raise ValueError('Invalid method name')
 
         if search == 'inexact':
             alpha, v = ls.inexact(fun, x, d, fx=f1, gx=g1, **kwargs)
         elif search == 'exact':
             alpha, v = ls.exact(fun, x, d, **kwargs)
+        else:
+            raise ValueError('Invalid search type')
+
         x = x + alpha * d
 
         f0 = f1
@@ -230,6 +241,9 @@ def quasiNewton(fun, x0, H0=None, method='bfgs', search='inexact',
             alpha, v = ls.inexact(fun, x, d, fx=f1, gx=g1, **kwargs)
         elif search == 'exact':
             alpha, v = ls.exact(fun, x, d, **kwargs)
+        else:
+            raise ValueError('Invalid search type')
+
         s = alpha * d
         x = x + s
 
@@ -258,6 +272,8 @@ def quasiNewton(fun, x0, H0=None, method='bfgs', search='inexact',
             z = r * (H @ y)
             H = H + r * (1 + np.dot(y, z)) * np.outer(s, s) \
                   - np.outer(s, z) - np.outer(z, s)
+        else:
+            raise ValueError('Invalid method name')
 
         niter += 1
         if niter == maxiter:
