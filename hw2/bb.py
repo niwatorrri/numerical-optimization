@@ -153,7 +153,7 @@ def sd(fun, x0, search='inexact', eps=1e-8, maxiter=10000, **kwargs):
         f1 = fun.f(x)
         g1 = fun.g(x)
         niter += 1
-        neval += (v + 3)
+        neval += (v + 2)
         if niter == maxiter:
             break
 
