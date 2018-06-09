@@ -53,7 +53,7 @@ def Newton(fun, x0, method='damped', search='inexact',
         number of function evaluations (f, g and G)
     """
     x = x0
-    f0 = 0
+    f0 = -np.inf
     f1 = fun.f(x0)
     g1 = fun.g(x0)
     niter = 0
@@ -132,7 +132,7 @@ def modifiedNewton(fun, x0, method='mix', search='inexact',
         number of function evaluations (f, g and G)
     """
     x = x0
-    f0 = 0
+    f0 = -np.inf
     f1 = fun.f(x0)
     g1 = fun.g(x0)
     niter = 0
@@ -228,7 +228,7 @@ def quasiNewton(fun, x0, H0=None, method='bfgs', search='inexact',
     else:
         H = np.eye(x.size)
 
-    f0 = 0
+    f0 = -np.inf
     f1 = fun.f(x)
     g0 = np.zeros(x.size)
     g1 = fun.g(x)
