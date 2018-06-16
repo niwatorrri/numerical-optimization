@@ -6,11 +6,11 @@ Created on Wed Apr 11 16:59:37 2018
 @author: Niwatori
 """
 
-'''
+"""
 # Line Search Algorithms
 # - Exact line searchL 0.618 method
 # - Inexact line search: strong Wolfe condition
-'''
+"""
 
 import numpy as np
 
