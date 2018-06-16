@@ -30,7 +30,6 @@ algorithms = ["res = ls.GaussNewton(fun, x)",
 
 # Solve each problem with every algorithm
 for problem in problems:
-
     for setting in problem:
         exec(setting)
     for algorithm in algorithms:

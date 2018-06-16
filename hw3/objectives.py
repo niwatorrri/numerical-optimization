@@ -12,7 +12,7 @@ Created on Fri Jun 1 19:01:54 2018
 # - Osborne function 2
 # - Chebyshev quadrature function
 # - Jennrich and Sampson function
-# - 
+# - Meyer function
 # - Brown and Dennis function
 """
 import numpy as np
